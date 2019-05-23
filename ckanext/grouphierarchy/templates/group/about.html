@@ -1,0 +1,135 @@
+{% extends "group/read_page_primary_hierarchy.html" %}
+{% set group = c.group_dict %}
+
+{% block pre_primary %}
+  {% if group.groups|length > 0 %}
+    <div class="container single-column group-org-header" xmlns="http://www.w3.org/1999/html">
+    {{ super() }}
+
+    {% block package_description %}
+      <div class="dataset-detail-org-logo">
+        <div class="image">
+          <a href="{{ group_url }}">
+            <img src="{{ c.group_dict.image_display_url or h.url_for_static('/base/images/placeholder-organization.png') }}" height= "100" width="100" alt="{{ c.group_dict.title }}" />
+          </a>
+        </div>
+      </div>
+
+      <h1 class="dataset-detail-title">
+          {% block page_heading %}
+          {% set name = c.group_dict.title or c.group_dict.name %}
+          {{ name }}
+        {% endblock %}
+      </h1>
+
+      <h5 class="dataset-detail-title">Curated by NextGEOSS</h5>
+
+      {% block package_notes %}
+        {% if c.group_dict.description %}
+          <div class="notes embedded-content dataset-notes">
+            {{ h.render_markdown(_(c.group_dict.description)) }}
+          </div>
+        {% endif %}
+      {% endblock %}
+    {% endblock %}
+
+    {% if c.group_dict.name == 'agriculture_monitoring' %}
+      <p>Download metadata file:
+        <a href="/agriculture_monitoring.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if c.group_dict.name == 'biodiversity17' %}
+      <p>Download metadata file:
+        <a href="/biodiversity.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if c.group_dict.name == 'coastal' %}
+      <p>Download metadata file:
+        <a href="/CoReSyF.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if c.group_dict.name == 'disaster_risk_reduction' %}
+      <p>Download metadata file:
+        <a href="/disaster.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if c.group_dict.name == 'space-and-security' %}
+      <p>Download metadata file:
+        <a href="/satcen.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if c.group_dict.name == 'energy' %}
+      <p>Download metadata file:
+        <a href="/armines.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if c.group_dict.name == 'energy-1' %}
+      <p>Download metadata file:
+        <a href="/energy-pilot-1.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if c.group_dict.name == 'geocradle' %}
+      <p>Download metadata file:
+        <a href="/geo_cradle.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+  </div>
+  {% else %}
+      {% snippet 'group/snippets/group_parent.html', group = c.group_dict, name=c.group_dict.name %}
+  {% endif %}
+{% endblock %}
+
+{% block primary_content_inner %}
+  {% if group.groups|length > 0 %}
+    {% block group_extras %}
+      {% snippet 'group/snippets/additional_info.html', extras = h.sorted_extras(c.group_dict.extras), name=c.group_dict.name %}
+    {% endblock %}
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,34 @@
+{% block primary %}
+  <article class="module">
+    <div class="module-content">
+      {% block page_primary_action %}
+        {% if h.check_access('group_create') %}
+          {% link_for _('Add Topic'), controller='group', action='new', class_='btn btn-primary', icon='plus-sign-alt' %}
+        {% endif %}
+      {% endblock %}
+
+      <h1 class="page-heading">{% block page_heading %}{{ group.name }}{% endblock %}</h1>
+      <h4>{{ group.description }}</h4>
+
+      {% set children = h.get_children_names(group.name) %}
+      {% set topics_count = ungettext('{number} topic', '{number} topics', count) %}
+      {% set children_count = children|length %}
+      {% set children_none = _('No topics yet') %}
+
+      {%- if children_count > 0 -%}
+        {% set topics_count = topics_count.format(number=h.localised_number(children_count)) %}
+      {%- else -%}
+        {% set topics_count = children_none %}
+      {% endif %}
+      <h2 class="text-center list-counter">{{ topics_count }}</h2>
+
+      {% block groups_list %}
+            {% snippet "group/snippets/children_group_list.html", group=group.name %}
+      {% endblock %}
+
+
+    </div>
+  </article>
+{% endblock %}
+
+{% block secondary %}{% endblock %}
