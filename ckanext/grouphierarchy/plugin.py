@@ -23,7 +23,9 @@ class GrouphierarchyPlugin(plugins.SingletonPlugin, DefaultGroupForm):
         		'get_allowable_parent_groups': helpers.get_allowable_parent_groups,
                 'is_include_children_selected': helpers.is_include_children_selected,
                 'get_children_names': helpers.get_children_names,
-                'get_group_collection_count': helpers.get_group_collection_count
+                'get_group_collection_count': helpers.get_group_collection_count,
+                'get_children_group_count': helpers.get_children_group_count,
+                'get_parent_groups': helpers.get_parent_groups,
                 }
 
     # IGroupForm

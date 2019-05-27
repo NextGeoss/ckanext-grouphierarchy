@@ -31,7 +31,6 @@ def is_include_children_selected(fields):
 
 def get_children_names(group_name):
     children = []
-    print group_name
 
     group = model.Group.get(group_name)
     children =  model.Group.get_children_groups(group)
@@ -44,7 +43,6 @@ def get_children_names(group_name):
 
             if str(group_name) in secondary_parent and g not in children:
                 children.append(g)
-    print children
     return children
 
 
@@ -73,3 +71,11 @@ def collection_information(collection_id=None):
     for collection in collection_items:
         if collection[0] == collection_id:
             return dict(collection[1])
+
+
+def get_children_group_count(name):
+    group = model.Group.get(name)
+
+    children =  model.Group.get_children_groups(group)
+
+    return len(children)
