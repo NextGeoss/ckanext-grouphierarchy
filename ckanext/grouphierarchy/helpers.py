@@ -79,3 +79,23 @@ def get_children_group_count(name):
     children =  model.Group.get_children_groups(group)
 
     return len(children)
+
+
+def get_topic_type_internal(groups):
+    internal_topics = []
+
+    for group in groups:
+        if group.extras.get('topic_type') == 'internal':
+            internal_topics.append(group)
+
+    return internal_topics
+
+
+def get_topic_type_external(groups):
+    external_topics = []
+
+    for group in groups:
+        if group.extras.get('topic_type') == 'external':
+            external_topics.append(group)
+
+    return external_topics

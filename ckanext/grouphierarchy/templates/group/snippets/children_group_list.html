@@ -9,13 +9,39 @@ Example:
 
 #}
 {% block group_list %}
-	<ul class="media-grid" data-module="media-grid">
-		{% block group_list_inner %}
-			{% set groups = h.get_children_names(group) %}
+	{% block group_list_inner %}
+		{% set groups = h.get_children_names(group) %}
+		{% set internal_topics = h.get_topic_type_internal(groups) %}
+		{% set external_topics = h.get_topic_type_external(groups) %}
 
-			{% for group in groups %}
-				{% snippet "group/snippets/children_group_item.html", group=group, position=loop.index %}
-			{% endfor %}
-	  {% endblock %}
-	</ul>
+		{% if internal_topics | length > 0 %}
+			<section id="dataset-resources" class="resources">
+				<h3><i class="fa fa-hashtag"></i> <b>{{ _('Pilots') }}</b></h3>
+
+				<div class="topic-list">
+					<ul class="media-grid masonry" style="position: relative">
+						{% for group in internal_topics %}
+							{% snippet "group/snippets/children_group_item.html", group=group, position=loop.index %}
+						{% endfor %}
+					</ul>
+				</div>
+			</section>
+		{% endif %}
+
+		{% if external_topics | length > 0 %}
+			<ul id="dataset-resources" class="resources">
+				<section class="humbnails-info">
+					<h3><i class="fa fa-hashtag"></i> <b>{{ _('Services') }}</b></h3>
+
+					<div class="topic-list">
+						<ul class="media-grid masonry" style="position: relative">
+							{% for group in external_topics %}
+								{% snippet "group/snippets/children_group_item.html", group=group, position=loop.index %}
+							{% endfor %}
+						</ul>
+					</div>
+				</section>
+			</ul>
+		{% endif %}
+	{% endblock %}
 {% endblock %}
