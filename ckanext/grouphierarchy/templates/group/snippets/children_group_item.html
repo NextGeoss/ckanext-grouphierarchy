@@ -23,14 +23,6 @@ Example:
     <h3 class="media-heading">{{ group.title }} </h3>
   {% endblock %}
 
-  {% block datasets %}
-    {% set collection_count = h.get_group_collection_count(group) %}
-    {% if collection_count %}
-      <strong class="count"> {{collection_count}} Collections used </strong>
-    {% else %}
-      <strong class="count"> 0 Collections used </strong>
-    {% endif %}
-  {% endblock %}
   {% block link %}
   <a href="{{ url }}" title="{{ _('View {name}').format(name=group.name) }}" class="media-view">
     <span>{{ _('View {name}').format(name=group.title) }}</span>
