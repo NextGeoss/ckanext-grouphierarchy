@@ -28,7 +28,9 @@ Example:
     {% endif %}
   {% endblock %}
   {% block datasets %}
-    {% set children_count = h.get_children_group_count(group.name) %}
+    {% set children = h.get_children_names(group.name) %}
+    {% set topics_count = ungettext('{number} topic', '{number} topics', count) %}
+    {% set children_count = children|length %}
     <strong class="count"> {{children_count}} Topics </strong>
   {% endblock %}
   {% block link %}
