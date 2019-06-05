@@ -29,9 +29,9 @@ Example:
   {% endblock %}
   {% block datasets %}
     {% set children = h.get_children_names(group.name) %}
-    {% set topics_count = ungettext('{number} topic', '{number} topics', count) %}
+    {% set topics_count = ungettext('{number} topic', '{number} services', count) %}
     {% set children_count = children|length %}
-    <strong class="count"> {{children_count}} Topics </strong>
+    <strong class="count"> {{children_count}} Services </strong>
   {% endblock %}
   {% block link %}
   <a href="{{ url }}" title="{{ _('View {name}').format(name=h.get_translated(group, 'title') or group.display_name) }}" class="media-view">

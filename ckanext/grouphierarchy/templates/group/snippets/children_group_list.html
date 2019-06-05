@@ -16,7 +16,7 @@ Example:
 
 		{% if internal_topics | length > 0 %}
 			<section id="dataset-resources" class="resources">
-				<h3><i class="fa fa-hashtag"></i> <b>{{ _('Pilots') }}</b></h3>
+				<h3><i class="fa fa-hashtag"></i> <b>{{ _('NextGEOSS Pilots') }}</b></h3>
 
 				<div class="topic-list">
 					<ul class="media-grid masonry" style="position: relative">
@@ -29,19 +29,19 @@ Example:
 		{% endif %}
 
 		{% if external_topics | length > 0 %}
-			<ul id="dataset-resources" class="resources">
-				<section class="humbnails-info">
-					<h3><i class="fa fa-hashtag"></i> <b>{{ _('Services') }}</b></h3>
+			<section id="dataset-resources" class="resources">
+				<h3><i class="fa fa-hashtag"></i> <b>{{ _('External Services
 
-					<div class="topic-list">
-						<ul class="media-grid masonry" style="position: relative">
-							{% for group in external_topics %}
-								{% snippet "group/snippets/children_group_item.html", group=group, position=loop.index %}
-							{% endfor %}
-						</ul>
-					</div>
-				</section>
-			</ul>
+') }}</b></h3>
+
+				<div class="topic-list">
+					<ul class="media-grid masonry" style="position: relative">
+						{% for group in external_topics %}
+							{% snippet "group/snippets/children_group_item.html", group=group, position=loop.index %}
+						{% endfor %}
+					</ul>
+				</div>
+			</section>
 		{% endif %}
 	{% endblock %}
 {% endblock %}
