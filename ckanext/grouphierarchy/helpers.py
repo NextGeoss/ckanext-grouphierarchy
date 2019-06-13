@@ -17,9 +17,16 @@ def get_allowable_parent_groups(group_id):
 
 
 def get_parent_groups():
+    parent_groups = []
     group_list = config.get('ckan.featured_groups')
 
-    return group_list
+    groups = h.get_featured_groups(count=40)
+
+    for group in groups:
+        if group['name'] in group_list:
+            parent_groups.append(group)
+
+    return parent_groups
 
 
 def is_include_children_selected(fields):
