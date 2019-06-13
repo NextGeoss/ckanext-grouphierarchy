@@ -25,7 +25,7 @@ def get_parent_groups():
 
     for group in groups:
         if group['name'] in group_list:
-            parent_groups.append(group)
+            parent_groups.append(group['name'])
 
     return parent_groups
 
