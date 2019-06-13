@@ -1,6 +1,7 @@
 import ckan.plugins as p
 import ckan.model as model
 from ckan.common import request, config
+import ckan.lib.helpers as h
 
 from ckanext.opensearch import config as opensearch_config
 
