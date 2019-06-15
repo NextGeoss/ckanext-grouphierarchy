@@ -7,7 +7,15 @@
         {% endif %}
       {% endblock %}
 
-      <h1 class="page-heading">{% block page_heading %}{{ group.name }}{% endblock %}</h1>
+      <div class="dataset-detail-org-logo">
+        <div class="image">
+          <a href="{{ group_url }}">
+            <img src="{{ group.image_display_url or group.image_url or h.url_for_static('/logo.png') }}" height= "100" width="100" alt="{{ c.group.title }}" />
+          </a>
+        </div>
+      </div>
+
+      <h1 class="page-heading">{% block page_heading %}{{ group.title }}{% endblock %}</h1>
       <h4>{{ group.description }}</h4>
 
       {% set children = h.get_children_names(group.name) %}
