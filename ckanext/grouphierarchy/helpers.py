@@ -19,7 +19,7 @@ def get_allowable_parent_groups(group_id):
 
 def get_parent_groups():
     parent_groups = []
-    group_list = config.get('ckan.featured_groups')
+    group_list = config.get('ckan.featured_groups').split()
 
     groups = h.get_featured_groups(count=40)
 
