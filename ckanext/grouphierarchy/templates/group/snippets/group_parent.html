@@ -30,6 +30,27 @@
       {% endif %}
       <h2 class="text-center list-counter">{{ topics_count }}</h2>
 
+      {% set collections = h.get_parent_collections(group.name) %}
+
+      <section id="dataset-resources" class="resources">
+        <h3><i class="fa fa-hashtag"></i> <b>{{ _('Collections') }}</b></h3>
+
+        <div class="topic-list">
+          <ul class="media-grid masonry" style="position: relative">
+            {% for col in collections %}
+                <li class="media-item">
+                  {{ col['name'] }}
+
+                  {% set collection_name = col.name.replace(' ', ('+')) %}
+
+                  <a href="/dataset?collection_name={{ collection_name }}" class="media-view">
+                  </a>
+                </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </section>
+
       {% block groups_list %}
             {% snippet "group/snippets/children_group_list.html", group=group.name %}
       {% endblock %}

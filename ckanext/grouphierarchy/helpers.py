@@ -4,6 +4,9 @@ from ckan.common import request, config
 import ckan.lib.helpers as h
 
 from ckanext.opensearch import config as opensearch_config
+from ckanext.nextgeoss import helpers as ng_helpers
+
+import ast
 
 
 def get_allowable_parent_groups(group_id):
@@ -107,3 +110,20 @@ def get_topic_type_external(groups):
             external_topics.append(group)
 
     return external_topics
+
+
+def get_parent_collections(name):
+    group_collections = []
+    collections = []
+
+    group = model.Group.get(name)
+
+    if group.extras.get('collections'):
+        group_collections = group.extras.get('collections').split(", ")
+
+    for collection_id in group_collections:
+        item = ng_helpers.collection_information(collection_id)
+        item['id'] = collection_id
+        collections.append(item)
+
+    return collections
