@@ -19,17 +19,7 @@
       <h4>{{ group.description }}</h4>
 
       {% set children = h.get_children_names(group.name) %}
-      {% set topics_count = ungettext('{number} service', '{number} services', count) %}
       {% set children_count = children|length %}
-      {% set children_none = _('No services yet') %}
-
-      {%- if children_count > 0 -%}
-        {% set topics_count = topics_count.format(number=h.localised_number(children_count)) %}
-      {%- else -%}
-        {% set topics_count = children_none %}
-      {% endif %}
-      <h2 class="text-center list-counter">{{ topics_count }}</h2>
-
       {% set collections = h.get_parent_collections(group.name) %}
 
       <section id="dataset-resources" class="resources">
@@ -51,11 +41,16 @@
         </div>
       </section>
 
-      {% block groups_list %}
+      {%- if children_count > 0 -%}
+        {% block groups_list %}
             {% snippet "group/snippets/children_group_list.html", group=group.name %}
-      {% endblock %}
-
-
+        {% endblock %}
+      {%- else -%}
+        <section id="dataset-resources" class="resources">
+          <hr style="border-top: 1px solid black">
+          <h4>Pilot applications are coming soon</h4>
+        </section>
+      {% endif %}
     </div>
   </article>
 {% endblock %}
