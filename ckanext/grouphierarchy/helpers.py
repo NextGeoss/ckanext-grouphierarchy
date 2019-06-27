@@ -56,25 +56,6 @@ def get_children_names(group_name):
                 children.append(g)
     return children
 
-
-def get_group_collection_count(group):
-    group_collections = []
-
-    if group.extras is not None and group.extras.get('collections') is not None:
-        collections = group.extras.get('collections')
-
-        for collection in collections.split(", "):
-            group_collections.append(collection)
-
-    collections = []
-
-    for collection_id in group_collections:
-        item = collection_information(collection_id)
-        collections.append(item)
-
-    return len(collections)
-
-
 def collection_information(collection_id=None):
     collections = opensearch_config.load_settings("collections_list")
     collection_items = collections.items()
@@ -111,7 +92,6 @@ def get_topic_type_external(groups):
 
     return external_topics
 
-
 def get_parent_collections(name):
     group_collections = []
     collections = []
@@ -127,3 +107,28 @@ def get_parent_collections(name):
         collections.append(item)
 
     return collections
+
+def get_child_collections(group):
+    group_collections = []
+    collections = []
+
+    collection_extras = list(filter(lambda x: x['key'] == 'collections', group['extras']))
+    if len(collection_extras) > 0:
+        group_collections = collection_extras[0]['value'].split(",")
+        group_collections = map(lambda x: x.strip(), group_collections)
+
+    collections = []
+
+    for collection_id in group_collections:
+        item = collection_information(collection_id)
+        collections.append(item)
+
+    return collections
+
+def is_internal(group):
+    group = model.Group.get(group['name'])
+    return group.extras.get('topic_type') == 'internal'
+
+def is_external(group):
+    group = model.Group.get(group['name'])
+    return group.extras.get('topic_type') == 'external'

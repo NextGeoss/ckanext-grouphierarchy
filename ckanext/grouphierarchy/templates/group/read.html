@@ -1,0 +1,28 @@
+{% extends "group/read_base_primary.html" %}
+
+{% set group = c.group_dict %}
+
+{% block pre_primary %}
+  {{ super() }}
+{% endblock %}
+
+{% block primary_content_inner %}
+  <h3 class="topic-collections-title"><i class="fa fa-info-circle"></i> Data Collections used by Pilot: </h3>
+
+  {% block packages_list %}
+    {% set collections = h.get_child_collections(group) %}
+    {% if collections|length > 0 %}
+      {{ h.snippet('group/snippets/collections_list.html', collections=collections) }}
+    {% else %}
+      {% if h.is_internal(group) %}
+        <section id="dataset-resources" class="resources">
+          <p>The pilot is yet to configure the Data Discovery service from the NextGEOSS DataHub</p>
+        </section>
+      {% endif %}
+    {% endif %}
+  {% endblock %}
+
+{% endblock %}
+
+{% block secondary_content %}
+{% endblock %}
