@@ -31,6 +31,7 @@ class GrouphierarchyPlugin(plugins.SingletonPlugin, DefaultGroupForm):
                 'get_child_collections': helpers.get_child_collections,
                 'is_internal': helpers.is_internal,
                 'is_external': helpers.is_external,
+                'get_output_datasets': helpers.get_output_datasets,
                 }
 
     # IGroupForm

@@ -132,3 +132,14 @@ def is_internal(group):
 def is_external(group):
     group = model.Group.get(group['name'])
     return group.extras.get('topic_type') == 'external'
+
+def get_output_datasets(group):
+    output_datasets = []
+    group = model.Group.get(group['name'])
+    group_packages = group.packages()
+    for package in group_packages:
+        extras = package.as_dict().get('extras', {})
+        if extras.get('is_output') == 'true':
+            output_datasets.append(package.as_dict())
+
+    return output_datasets
