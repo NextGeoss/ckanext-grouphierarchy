@@ -92,36 +92,19 @@ def get_topic_type_external(groups):
 
     return external_topics
 
-def get_parent_collections(name):
+def get_topic_collections(name):
     group_collections = []
     collections = []
 
     group = model.Group.get(name)
-
     if group.extras.get('collections'):
         group_collections = group.extras.get('collections').split(", ")
 
     for collection_id in group_collections:
         item = ng_helpers.collection_information(collection_id)
-        item['id'] = collection_id
-        collections.append(item)
-
-    return collections
-
-def get_child_collections(group):
-    group_collections = []
-    collections = []
-
-    collection_extras = list(filter(lambda x: x['key'] == 'collections', group['extras']))
-    if len(collection_extras) > 0:
-        group_collections = collection_extras[0]['value'].split(",")
-        group_collections = map(lambda x: x.strip(), group_collections)
-
-    collections = []
-
-    for collection_id in group_collections:
-        item = collection_information(collection_id)
-        collections.append(item)
+        if item:
+            item['id'] = collection_id
+            collections.append(item)
 
     return collections
 

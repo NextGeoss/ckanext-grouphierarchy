@@ -128,7 +128,7 @@
   {% if group.groups|length > 0 %}
     {% block group_extras %}
 
-      {% set collections = h.get_parent_collections(group.name) %}
+      {% set collections = h.get_topic_collections(group.name) %}
 
       {% snippet 'group/snippets/additional_info.html', extras = h.sorted_extras(c.group_dict.extras), name=c.group_dict.name, collections=collections %}
 

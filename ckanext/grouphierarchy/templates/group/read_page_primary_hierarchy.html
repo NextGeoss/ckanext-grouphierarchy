@@ -11,7 +11,7 @@
   {% if c.group_dict.groups|length > 0 %}
     {{ h.build_nav_icon('topic_about', _('Metadata'), id=c.group_dict.name) }}
 
-    {% set collection_count = h.get_child_collections(c.group_dict)|length %}
+    {% set collection_count = h.get_topic_collections(c.group_dict['name'])|length %}
     {% if h.is_internal(group) %}
       {{ h.build_nav_icon('topic_read', _('Data Collections'), id=c.group_dict.name) }}
     {% endif %}

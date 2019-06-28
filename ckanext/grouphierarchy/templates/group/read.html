@@ -10,7 +10,7 @@
   <h3 class="topic-collections-title"><i class="fa fa-info-circle"></i> Data Collections used by Pilot: </h3>
 
   {% block packages_list %}
-    {% set collections = h.get_child_collections(group) %}
+    {% set collections = h.get_topic_collections(group.name) %}
     {% if collections|length > 0 %}
       {{ h.snippet('group/snippets/collections_list.html', collections=collections) }}
     {% else %}
