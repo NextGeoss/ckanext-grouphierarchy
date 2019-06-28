@@ -19,7 +19,10 @@
       {{ h.build_nav_icon('topic_read', _('Data Collections'), id=c.group_dict.name) }}
     {% endif %}
 
-    {{ h.build_nav_icon('topic_output', _('Output data'), id=c.group_dict.name) }}
+    {% set output_datasets = h.get_output_datasets(group) %}
+    {% if output_datasets|length > 0 %}
+      {{ h.build_nav_icon('topic_output', _('Output data'), id=c.group_dict.name) }}
+    {% endif %}
     {# Activity section available only for users that can create #}
     {% if h.check_access('package_create', {'owner_org': c.group_dict.id}) %}
       {{ h.build_nav_icon('topic_activity', _('Activity Stream'), id=c.group_dict.name, offset=0) }}
