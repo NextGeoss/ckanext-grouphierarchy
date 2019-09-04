@@ -29,7 +29,7 @@ Example:
   {% endblock %}
   {% block datasets %}
     {% set children = h.get_children_names(group.name) %}
-    {% set topics_count = ungettext('{number} topic', '{number} services', count) %}
+    {% set topics_count = ungettext('{number} thematic areas', '{number} services', count) %}
     {% set children_count = children|length %}
     <strong class="count"> {{children_count}} Services </strong>
   {% endblock %}
