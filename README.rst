@@ -31,19 +31,7 @@
 =============
 ckanext-grouphierarchy
 =============
-
-.. Put a description of your extension here:
-   What does it do? What features does it have?
-   Consider including some screenshots or embedding a video!
-
-
-------------
-Requirements
-------------
-
-For example, you might want to mention here which versions of CKAN this
-extension works with.
-
+This extension adds functionality to creates subgroups within a group.
 
 ------------
 Installation
@@ -76,12 +64,25 @@ To install ckanext-grouphierarchy:
 Config Settings
 ---------------
 
-Document any optional config settings here. For example::
+The plugin adds functionality the group create/edit form allowing you to assign the group to another parent group.
 
-    # The minimum number of hours to wait before re-checking a resource
-    # (optional, default: 24).
-    ckanext.grouphierarchy.some_setting = some_default_value
+If the group should be assigned to multiple parent groups, you can specify the others by the following attribute the groups extras:
 
+.. code-block::
+   secondary_parent: secondary_parent_group_id
+
+You can also mark a group as `external` or `internal` by setting it in the extras:
+
+.. code-block::
+   topic_type: external/internal
+
+Depending on this attribute child groups will be displayed either in the parent's `External Services` section
+or in the parent's `Internal Services` section.
+
+If you also want to display the Data Collections associated with a certain group, you can add the list of collection ids to the extras:
+
+.. code-block::
+   collections: list,of,collection,ids
 
 ------------------------
 Development Installation
@@ -95,72 +96,3 @@ do::
     python setup.py develop
     pip install -r dev-requirements.txt
 
-
------------------
-Running the Tests
------------------
-
-To run the tests, do::
-
-    nosetests --nologcapture --with-pylons=test.ini
-
-To run the tests and produce a coverage report, first make sure you have
-coverage installed in your virtualenv (``pip install coverage``) then run::
-
-    nosetests --nologcapture --with-pylons=test.ini --with-coverage --cover-package=ckanext.grouphierarchy --cover-inclusive --cover-erase --cover-tests
-
-
----------------------------------
-Registering ckanext-grouphierarchy on PyPI
----------------------------------
-
-ckanext-grouphierarchy should be availabe on PyPI as
-https://pypi.python.org/pypi/ckanext-grouphierarchy. If that link doesn't work, then
-you can register the project on PyPI for the first time by following these
-steps:
-
-1. Create a source distribution of the project::
-
-     python setup.py sdist
-
-2. Register the project::
-
-     python setup.py register
-
-3. Upload the source distribution to PyPI::
-
-     python setup.py sdist upload
-
-4. Tag the first release of the project on GitHub with the version number from
-   the ``setup.py`` file. For example if the version number in ``setup.py`` is
-   0.0.1 then do::
-
-       git tag 0.0.1
-       git push --tags
-
-
-----------------------------------------
-Releasing a New Version of ckanext-grouphierarchy
-----------------------------------------
-
-ckanext-grouphierarchy is availabe on PyPI as https://pypi.python.org/pypi/ckanext-grouphierarchy.
-To publish a new version to PyPI follow these steps:
-
-1. Update the version number in the ``setup.py`` file.
-   See `PEP 440 <http://legacy.python.org/dev/peps/pep-0440/#public-version-identifiers>`_
-   for how to choose version numbers.
-
-2. Create a source distribution of the new version::
-
-     python setup.py sdist
-
-3. Upload the source distribution to PyPI::
-
-     python setup.py sdist upload
-
-4. Tag the new release of the project on GitHub with the version number from
-   the ``setup.py`` file. For example if the version number in ``setup.py`` is
-   0.0.2 then do::
-
-       git tag 0.0.2
-       git push --tags
