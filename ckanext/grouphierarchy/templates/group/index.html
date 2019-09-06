@@ -25,9 +25,8 @@
 
       {% block groups_list %}
         {% if c.page.items or request.params %}
-          {% if c.page.items %}
-            {% snippet "group/snippets/group_list.html", groups=c.page.items %}
-          {% endif %}
+            {% set featured = h.get_parent_groups() %}
+            {% snippet "group/snippets/group_list.html", groups=featured %}
         {% else %}
           <p class="empty">
             {{ _('There are currently no topics for this site') }}.

@@ -11,11 +11,8 @@ Example:
 {% block group_list %}
 <ul class="media-grid" data-module="media-grid">
   {% block group_list_inner %}
-  {% set featured = h.get_parent_groups() %}
   {% for group in groups %}
-  	{% if group.name in featured %}
-    	{% snippet "group/snippets/group_item.html", group=group, position=loop.index %}
-    {% endif %}
+        {% snippet "group/snippets/group_item.html", group=group, position=loop.index %}
   {% endfor %}
   {% endblock %}
 </ul>
