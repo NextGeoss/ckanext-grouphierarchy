@@ -1,5 +1,6 @@
 import ckan.plugins as p
 import ckan.model as model
+import ckan.logic as logic
 from ckan.common import request, config
 import ckan.lib.helpers as h
 
@@ -74,6 +75,9 @@ def get_group_collection_count(group):
 
     return len(collections)
 
+def get_group_show(group_id):
+    group_details = logic.get_action('group_show')({}, {'id': group_id })
+    return group_details
 
 def collection_information(collection_id=None):
     collections = opensearch_config.load_settings("collections_list")
