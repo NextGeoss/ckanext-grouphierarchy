@@ -1,5 +1,6 @@
 {% extends "group/read_page_primary_hierarchy.html" %}
 {% set group = c.group_dict %}
+{% set name = c.group_dict.title %}
 
 {% block pre_primary %}
   {% if group.groups|length > 0 %}
@@ -7,7 +8,6 @@
     {{ super() }}
 
     {% block package_description %}
-      {% set name = c.group_dict.title %}
       <div class="dataset-detail-org-logo">
         <div class="image">
           <a href="{{ group_url }}">
