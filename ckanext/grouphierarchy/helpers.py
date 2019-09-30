@@ -32,6 +32,13 @@ def get_parent_groups():
 
     return parent_groups
 
+def get_children_groups():
+    group_list = model.Group.all(group_type='group')
+    parent_group_names = get_parent_groups()
+    children_groups = [group for group in group_list
+                       if group.name not in parent_group_names]
+
+    return children_groups
 
 def is_include_children_selected(fields):
     include_children_selected = False
