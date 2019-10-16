@@ -1,3 +1,4 @@
+import routes.mapper
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.lib.plugins import DefaultGroupForm
@@ -7,6 +8,7 @@ from ckanext.grouphierarchy import helpers
 
 class GrouphierarchyPlugin(plugins.SingletonPlugin, DefaultGroupForm):
     plugins.implements(plugins.IConfigurer)
+    plugins.implements(plugins.IRoutes, inherit=True)
     plugins.implements(plugins.IGroupForm, inherit=True)
     plugins.implements(plugins.ITemplateHelpers, inherit=True)
 
@@ -46,3 +48,9 @@ class GrouphierarchyPlugin(plugins.SingletonPlugin, DefaultGroupForm):
 
         group_id = data_dict.get('id')
         c.allowable_parent_groups = helpers.get_allowable_parent_groups(group_id)
+
+    def before_map(self, map):
+        package_controller = 'ckanext.grouphierarchy.controllers.package:GrouphierarchyPackageController'  # noqa: E501
+        with routes.mapper.SubMapper(map, controller=package_controller) as m:
+          m.connect('dataset_groups', '/dataset/groups/{id}', action='groups')
+        return map
