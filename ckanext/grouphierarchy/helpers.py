@@ -1,5 +1,6 @@
 import ckan.plugins as p
 import ckan.model as model
+import ckan.logic as logic
 from ckan.common import request, config
 import ckan.lib.helpers as h
 
@@ -55,6 +56,7 @@ def get_children_names(group_name):
             if str(group_name) in secondary_parent and g not in children:
                 children.append(g)
     return children
+
 
 def collection_information(collection_id=None):
     collections = opensearch_config.load_settings("collections_list")

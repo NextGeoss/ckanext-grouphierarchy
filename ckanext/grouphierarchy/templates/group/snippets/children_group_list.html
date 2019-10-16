@@ -21,7 +21,8 @@ Example:
 				<div class="topic-list">
 					<ul class="media-grid masonry" style="position: relative">
 						{% for group in internal_topics %}
-							{% snippet "group/snippets/children_group_item.html", group=group, position=loop.index %}
+							{% set group_dict = h.get_group_show(group.id) %}
+							{% snippet "group/snippets/children_group_item.html", group=group_dict, position=loop.index %}
 						{% endfor %}
 					</ul>
 				</div>
@@ -37,7 +38,8 @@ Example:
 				<div class="topic-list">
 					<ul class="media-grid masonry" style="position: relative">
 						{% for group in external_topics %}
-							{% snippet "group/snippets/children_group_item.html", group=group, position=loop.index %}
+							{% set group_dict = h.get_group_show(group.id) %}
+							{% snippet "group/snippets/children_group_item.html", group=group_dict, position=loop.index %}
 						{% endfor %}
 					</ul>
 				</div>
