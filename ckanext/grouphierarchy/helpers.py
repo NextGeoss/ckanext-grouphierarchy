@@ -117,13 +117,16 @@ def get_topic_collections(name):
 
     return collections
 
+
 def is_internal(group):
     group = model.Group.get(group['name'])
     return group.extras.get('topic_type') == 'internal'
 
+
 def is_external(group):
     group = model.Group.get(group['name'])
     return group.extras.get('topic_type') == 'external'
+
 
 def get_output_datasets(group):
     output_datasets = []
@@ -135,3 +138,8 @@ def get_output_datasets(group):
             output_datasets.append(package.as_dict())
 
     return output_datasets
+
+
+def get_group_show(group_id):
+    group_details = logic.get_action('group_show')({}, {'id': group_id })
+    return group_details
