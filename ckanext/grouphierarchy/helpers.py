@@ -58,27 +58,6 @@ def get_children_names(group_name):
     return children
 
 
-def get_group_collection_count(group):
-    group_collections = []
-
-    if group.extras is not None and group.extras.get('collections') is not None:
-        collections = group.extras.get('collections')
-
-        for collection in collections.split(", "):
-            group_collections.append(collection)
-
-    collections = []
-
-    for collection_id in group_collections:
-        item = collection_information(collection_id)
-        collections.append(item)
-
-    return len(collections)
-
-def get_group_show(group_id):
-    group_details = logic.get_action('group_show')({}, {'id': group_id })
-    return group_details
-
 def collection_information(collection_id=None):
     collections = opensearch_config.load_settings("collections_list")
     collection_items = collections.items()
@@ -115,19 +94,37 @@ def get_topic_type_external(groups):
 
     return external_topics
 
-
-def get_parent_collections(name):
+def get_topic_collections(name):
     group_collections = []
     collections = []
 
     group = model.Group.get(name)
-
     if group.extras.get('collections'):
         group_collections = group.extras.get('collections').split(", ")
 
     for collection_id in group_collections:
         item = ng_helpers.collection_information(collection_id)
-        item['id'] = collection_id
-        collections.append(item)
+        if item:
+            item['id'] = collection_id
+            collections.append(item)
 
     return collections
+
+def is_internal(group):
+    group = model.Group.get(group['name'])
+    return group.extras.get('topic_type') == 'internal'
+
+def is_external(group):
+    group = model.Group.get(group['name'])
+    return group.extras.get('topic_type') == 'external'
+
+def get_output_datasets(group):
+    output_datasets = []
+    group = model.Group.get(group['name'])
+    group_packages = group.packages()
+    for package in group_packages:
+        extras = package.as_dict().get('extras', {})
+        if extras.get('is_output') == 'true':
+            output_datasets.append(package.as_dict())
+
+    return output_datasets

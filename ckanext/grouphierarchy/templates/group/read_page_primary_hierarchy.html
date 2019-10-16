@@ -10,9 +10,19 @@
 {% block content_primary_nav %}
   {% if c.group_dict.groups|length > 0 %}
     {{ h.build_nav_icon('topic_about', _('Metadata'), id=c.group_dict.name) }}
-    {{ h.build_nav_icon('topic_read', _('Data Collections'), id=c.group_dict.name) }}
-    {{ h.build_nav_icon('topic_output', _('Output data'), id=c.group_dict.name) }}
 
+    {% set collection_count = h.get_topic_collections(c.group_dict['name'])|length %}
+    {% if h.is_internal(group) %}
+      {{ h.build_nav_icon('topic_read', _('Data Collections'), id=c.group_dict.name) }}
+    {% endif %}
+    {% if h.is_external and collection_count > 0 %}
+      {{ h.build_nav_icon('topic_read', _('Data Collections'), id=c.group_dict.name) }}
+    {% endif %}
+
+    {% set output_datasets = h.get_output_datasets(group) %}
+    {% if output_datasets|length > 0 %}
+      {{ h.build_nav_icon('topic_output', _('Output data'), id=c.group_dict.name) }}
+    {% endif %}
     {# Activity section available only for users that can create #}
     {% if h.check_access('package_create', {'owner_org': c.group_dict.id}) %}
       {{ h.build_nav_icon('topic_activity', _('Activity Stream'), id=c.group_dict.name, offset=0) }}

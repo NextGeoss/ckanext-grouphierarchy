@@ -23,13 +23,14 @@ class GrouphierarchyPlugin(plugins.SingletonPlugin, DefaultGroupForm):
         		'get_allowable_parent_groups': helpers.get_allowable_parent_groups,
                 'is_include_children_selected': helpers.is_include_children_selected,
                 'get_children_names': helpers.get_children_names,
-                'get_group_collection_count': helpers.get_group_collection_count,
                 'get_children_group_count': helpers.get_children_group_count,
                 'get_parent_groups': helpers.get_parent_groups,
                 'get_topic_type_internal': helpers.get_topic_type_internal,
                 'get_topic_type_external': helpers.get_topic_type_external,
-                'get_parent_collections': helpers.get_parent_collections,
-                'get_group_show': helpers.get_group_show,
+                'get_topic_collections': helpers.get_topic_collections,
+                'is_internal': helpers.is_internal,
+                'is_external': helpers.is_external,
+                'get_output_datasets': helpers.get_output_datasets,
                 }
 
     # IGroupForm
