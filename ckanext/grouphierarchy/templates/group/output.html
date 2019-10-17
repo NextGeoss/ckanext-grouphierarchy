@@ -6,11 +6,10 @@
   {{ super() }}
 {% endblock %}
 
-
 {% block primary_content_inner %}
   {% block packages_list %}
     {% set output_datasets = h.get_output_datasets(group) %}
-    {{ h.snippet('group/snippets/output_data_list.html', datasets=output_datasets) }}
+    {{ h.snippet('group/snippets/output_data_list.html', packages=output_datasets) }}
   {% endblock %}
 
 {% endblock %}
