@@ -15,7 +15,7 @@
     {% if h.is_internal(group) %}
       {{ h.build_nav_icon('topic_read', _('Data Collections'), id=c.group_dict.name) }}
     {% endif %}
-    {% if h.is_external and collection_count > 0 %}
+    {% if h.is_external(group) and collection_count > 0 %}
       {{ h.build_nav_icon('topic_read', _('Data Collections'), id=c.group_dict.name) }}
     {% endif %}
 
