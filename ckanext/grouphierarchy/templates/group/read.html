@@ -1,6 +1,5 @@
 {% extends "group/read_page_primary_hierarchy.html" %}
 {% set group = c.group_dict %}
-
 {% block pre_primary %}
   {{ super() }}
 {% endblock %}
@@ -16,7 +15,11 @@
     {% else %}
       {% if h.is_internal(group) %}
         <section id="dataset-resources" class="resources">
-          <p>The pilot is yet to configure the Data Discovery service from the NextGEOSS DataHub</p>
+          {% if group.display_name == "Energy - Constructing Gridded Data for Grid Operations" %}
+              <p>This pilot is not using the Data Discovery service from NextGEOSS DataHub</p>
+          {% else %}
+              <p>The pilot is yet to configure the Data Discovery service from the NextGEOSS DataHub</p>
+          {% endif %}
         </section>
       {% endif %}
     {% endif %}
