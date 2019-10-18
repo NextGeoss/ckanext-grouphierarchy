@@ -20,7 +20,10 @@
     {% endif %}
 
     {% set output_datasets = h.get_output_datasets(group) %}
-    {% if output_datasets|length > 0 %}
+    {% if h.is_internal(group) %}
+      {{ h.build_nav_icon('topic_output', _('Output data'), id=c.group_dict.name) }}
+    {% endif %}
+    {% if h.is_external(group) and output_datasets|length > 0 %}
       {{ h.build_nav_icon('topic_output', _('Output data'), id=c.group_dict.name) }}
     {% endif %}
     {# Activity section available only for users that can create #}

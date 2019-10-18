@@ -7,11 +7,17 @@
 {% endblock %}
 
 {% block primary_content_inner %}
+  <h3 class="topic-collections-title"><i class="fa fa-arrow-circle-o-down"></i>Output data of the Pilot: </h3>
   {% block packages_list %}
     {% set output_datasets = h.get_output_datasets(group) %}
-    {{ h.snippet('group/snippets/output_data_list.html', packages=output_datasets) }}
+    {% if output_datasets|length > 0 %}
+      {{ h.snippet('group/snippets/output_data_list.html', packages=output_datasets) }}
+    {% else %}
+      <section id="dataset-resources" class="resources">
+        <p>The pilot application is yet to catalog its output in the NextGEOSS Datahub</p>
+      </section>
+    {% endif %}
   {% endblock %}
-
 {% endblock %}
 
 {% block secondary_content %}
