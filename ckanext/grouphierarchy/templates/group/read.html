@@ -1,11 +1,10 @@
-{% extends "group/read_base_primary.html" %}
-
+{% extends "group/read_page_primary_hierarchy.html" %}
 {% set group = c.group_dict %}
-
 
 {% block pre_primary %}
   {{ super() }}
 {% endblock %}
+
 
 {% block primary_content_inner %}
   <h3 class="topic-collections-title"><i class="fa fa-info-circle"></i> Data Collections used by Pilot: </h3>
