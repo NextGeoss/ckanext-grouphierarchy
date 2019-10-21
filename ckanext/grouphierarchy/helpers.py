@@ -135,7 +135,8 @@ def get_output_datasets(group):
     for package in group_packages:
         extras = package.as_dict().get('extras', {})
         if extras.get('is_output') == 'true':
-            output_datasets.append(package.as_dict())
+            package_details = logic.get_action('package_show')({}, {'id': package.id })
+            output_datasets.append(package_details)
 
     return output_datasets
 
