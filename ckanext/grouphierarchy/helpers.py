@@ -35,7 +35,7 @@ def get_parent_groups():
 
 def get_children_groups():
     group_list = model.Group.all(group_type='group')
-    parent_group_names = get_parent_groups()
+    parent_group_names = [group['name'] for group in get_parent_groups()]
     children_groups = [group for group in group_list
                        if group.name not in parent_group_names]
 
