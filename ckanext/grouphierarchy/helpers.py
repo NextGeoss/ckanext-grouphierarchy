@@ -133,11 +133,10 @@ def get_output_datasets(group):
     group = model.Group.get(group['name'])
     group_packages = group.packages()
     for package in group_packages:
-        extras = package.as_dict().get('extras', {})
-        if extras.get('is_output') == 'true':
-            package_details = logic.get_action('package_show')({}, {'id': package.id })
-            output_datasets.append(package_details)
-
+        package_details = logic.get_action('package_show')({}, {'id': package.id })
+        for d in package_details['extras']:
+            if d['key'] == 'is_output' and bool(d['value']) == True:
+                output_datasets.append(package_details)
     return output_datasets
 
 
