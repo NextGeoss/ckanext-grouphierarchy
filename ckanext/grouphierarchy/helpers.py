@@ -134,9 +134,10 @@ def get_output_datasets(group):
     group_packages = group.packages()
     for package in group_packages:
         package_details = logic.get_action('package_show')({}, {'id': package.id })
-        is_output = [obj for obj in package_details.get('extras') if obj['key'] == 'is_output'][0]
-        if bool(is_output.get('value')) == True:
-            output_datasets.append(package_details)
+        is_output = [obj for obj in package_details.get('extras') if obj['key'] == 'is_output']
+        if len(is_output) > 0:
+            if bool(is_output[0].get('value')) == True:
+                output_datasets.append(package_details)
 
     return output_datasets
 
