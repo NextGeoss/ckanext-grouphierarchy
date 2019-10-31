@@ -27,6 +27,7 @@ class GrouphierarchyPlugin(plugins.SingletonPlugin, DefaultGroupForm):
                 'get_children_names': helpers.get_children_names,
                 'get_children_group_count': helpers.get_children_group_count,
                 'get_parent_groups': helpers.get_parent_groups,
+                'get_children_groups': helpers.get_children_groups,
                 'get_topic_type_internal': helpers.get_topic_type_internal,
                 'get_topic_type_external': helpers.get_topic_type_external,
                 'get_topic_collections': helpers.get_topic_collections,

@@ -33,9 +33,11 @@
             {% block group_list %}
             <ul class="media-grid" data-module="media-grid">
                 {% block group_list_inner %}
-                {% set featured = h.get_parent_groups() %}
+                {% set childrenGroupNames = h.get_children_groups() | map(attribute='name') %}
                 {% for group in c.pkg_dict.groups %}
+                  {% if group.name in childrenGroupNames %}
                     {% snippet "group/snippets/group_item.html", group=group, position=loop.index %}
+                  {% endif %}
                 {% endfor %}
                 {% endblock %}
             </ul>
