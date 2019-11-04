@@ -161,10 +161,10 @@
 
 		<table class="table table-bordered table-dataset">
 			<tbody>
+				{% set contact = ['e-mail', 'individualName', 'organisationName'] %}
 				{% for extra in extras %}
 				{% set key, value = extra %}
-				{% set contact = ['e-mail', 'individualName', 'organisationName'] %}
-				{% set skip = ['collections', 'extent'] %}
+				{% set skip = ['collections', 'extent', 'topic_type', 'secondary_parent'] %}
 				{% if key not in contact and 'resource' not in key and key not in skip %}
 				<tr rel="dc:relation" resource="_:extra{{ i }}">
 					<th scope="row" class="dataset-label" property="rdfs:label">{{ _(key) }}</th>
@@ -178,8 +178,6 @@
 					<td class="dataset-details" property="rdf:value">
 						{% for extra in extras %}
 						{% set key, value = extra %}
-						{% set contact = ['e-mail', 'individualName', 'organisationName'] %}
-
 						{% if key in contact %}
 						<b>{{ key }} </b> {{ value }} </br>
 						{% endif %}
