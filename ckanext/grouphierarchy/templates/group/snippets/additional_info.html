@@ -167,7 +167,7 @@
 				{% set skip = ['collections', 'extent', 'topic_type', 'secondary_parent'] %}
 				{% if key not in contact and 'resource' not in key and key not in skip %}
 				<tr rel="dc:relation" resource="_:extra{{ i }}">
-					<th scope="row" class="dataset-label" property="rdfs:label">{{ _(key) }}</th>
+					<th scope="row" class="dataset-label" property="rdfs:label">{{ _(key) | replace('_', ' ') | title }}</th>
 					<td class="dataset-details" property="rdf:value">{{ value }}</td>
 				</tr>
 				{% endif %}
