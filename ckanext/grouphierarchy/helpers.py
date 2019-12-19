@@ -1,3 +1,4 @@
+import datetime
 import ckan.plugins as p
 import ckan.model as model
 import ckan.logic as logic
@@ -145,3 +146,15 @@ def get_output_datasets(group):
 def get_group_show(group_id):
     group_details = logic.get_action('group_show')({}, {'id': group_id })
     return group_details
+
+def get_group_date(key, extras):
+    period = ''
+
+    for extra in extras:
+        k, v = extra[0], extra[1]
+
+        if k == key and v != '':
+            date = datetime.datetime.strptime(str(v), '%Y-%m-%d')
+            period += date.strftime("%d %B, %Y")
+
+    return period
