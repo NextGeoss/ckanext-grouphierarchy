@@ -15,24 +15,30 @@
       {% set children = h.get_children_names(group.name) %}
       {% set children_count = children|length %}
       {% set collections = h.get_topic_collections(group.name) %}
+      {% set collections_count = collections|length %}
+
 
       <section id="dataset-resources" class="resources">
         <h3><i class="fa fa-hashtag"></i> <b>{{ _('The Data Collections') }}</b></h3>
+    
+        {% if collections_count > 0 %}
+          <div class="topic-list">
+            <ul class="media-grid masonry" style="position: relative">
+              {% for col in collections %}
+                  <li class="media-item">
+                    {{ col['name'] }}
 
-        <div class="topic-list">
-          <ul class="media-grid masonry" style="position: relative">
-            {% for col in collections %}
-                <li class="media-item">
-                  {{ col['name'] }}
+                    {% set collection_name = col.name.replace(' ', ('+')) %}
 
-                  {% set collection_name = col.name.replace(' ', ('+')) %}
-
-                  <a href="/dataset?collection_name={{ collection_name }}" class="media-view">
-                  </a>
-                </li>
-            {% endfor %}
-          </ul>
-        </div>
+                    <a href="/dataset?collection_name={{ collection_name }}" class="media-view">
+                    </a>
+                  </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% else %}
+          <h4>No collections from NextGEOSS DataHub are currently associated with this thematic area.</h4>
+        {% endif %}
       </section>
 
       {%- if children_count > 0 -%}
