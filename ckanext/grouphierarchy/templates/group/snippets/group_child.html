@@ -1,0 +1,125 @@
+{#
+    Display a child group.
+    
+    group - child group dictionary
+    
+    Example:
+
+        {% snippet 'group/snippets/group_child.html', group = c.group_dict %}    
+#}
+
+<div class="container single-column group-org-header" xmlns="http://www.w3.org/1999/html">
+
+    {% block package_description %}
+      <div class="dataset-detail-org-logo">
+        <div class="image">
+          <a href="{{ group_url }}">
+            <img src="{{ group.image_display_url or group.image_url or h.url_for_static('/public/logo.jpg') }}" height= "100" width="100" alt="{{ name }}" />
+          </a>
+        </div>
+      </div>
+
+      <h1 class="dataset-detail-title">
+        {% block page_heading %}
+          {{ group.title }}
+        {% endblock %}
+      </h1>
+
+      {% block package_notes %}
+        {% if group.description %}
+          <div class="notes embedded-content dataset-notes">
+            {{ h.render_markdown(_(group.description)) }}
+          </div>
+        {% endif %}
+      {% endblock %}
+    {% endblock %}
+
+
+    {% if group.name == 'agriculture_monitoring' %}
+      <p>Download metadata file:
+        <a href="/agriculture_monitoring.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if group.name == 'biodiversity17' %}
+      <p>Download metadata file:
+        <a href="/biodiversity.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if group.name == 'coastal' %}
+      <p>Download metadata file:
+        <a href="/CoReSyF.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if group.name == 'disaster_risk_reduction' %}
+      <p>Download metadata file:
+        <a href="/disaster.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if group.name == 'space-and-security' %}
+      <p>Download metadata file:
+        <a href="/satcen.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if group.name == 'energy' %}
+      <p>Download metadata file:
+        <a href="/armines.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if group.name == 'energy-1' %}
+      <p>Download metadata file:
+        <a href="/energy-pilot-1.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if group.name == 'geocradle' %}
+      <p>Download metadata file:
+        <a href="/geo_cradle.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+</div>
