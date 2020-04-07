@@ -68,21 +68,23 @@ The plugin adds functionality the group create/edit form allowing you to assign 
 
 If the group should be assigned to multiple parent groups, you can specify the others by the following attribute the groups extras:
 
-.. code-block::
-   secondary_parent: secondary_parent_group_id
+    secondary_parent: secondary_parent_group_id
+
 
 You can also mark a group as `external` or `internal` by setting it in the extras:
 
-.. code-block::
-   topic_type: external/internal
+
+    topic_type: external/internal
+
 
 Depending on this attribute child groups will be displayed either in the parent's `External Services` section
 or in the parent's `Internal Services` section.
 
 If you also want to display the Data Collections associated with a certain group, you can add the list of collection ids to the extras:
 
-.. code-block::
-   collections: list,of,collection,ids
+
+    collections: list,of,collection,ids
+
 
 ------------------------
 Development Installation
