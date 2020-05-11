@@ -129,20 +129,6 @@ def is_external(group):
     return group.extras.get('topic_type') == 'external'
 
 
-def get_output_datasets(group):
-    output_datasets = []
-    group = model.Group.get(group['name'])
-    group_packages = group.packages()
-    for package in group_packages:
-        package_details = logic.get_action('package_show')({}, {'id': package.id })
-        is_output = [obj for obj in package_details.get('extras') if obj['key'] == 'is_output']
-        if len(is_output) > 0:
-            if bool(is_output[0].get('value')) == True:
-                output_datasets.append(package_details)
-
-    return output_datasets
-
-
 def get_group_show(group_id):
     group_details = logic.get_action('group_show')({}, {'id': group_id })
     return group_details

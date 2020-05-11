@@ -33,7 +33,6 @@ class GrouphierarchyPlugin(plugins.SingletonPlugin, DefaultGroupForm):
                 'get_topic_collections': helpers.get_topic_collections,
                 'is_internal': helpers.is_internal,
                 'is_external': helpers.is_external,
-                'get_output_datasets': helpers.get_output_datasets,
                 'get_group_show': helpers.get_group_show,
                 'get_group_date': helpers.get_group_date,
                 }
