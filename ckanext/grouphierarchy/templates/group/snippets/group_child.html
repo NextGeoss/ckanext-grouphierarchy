@@ -1,11 +1,11 @@
 {#
     Display a child group.
-    
+
     group - child group dictionary
-    
+
     Example:
 
-        {% snippet 'group/snippets/group_child.html', group = c.group_dict %}    
+        {% snippet 'group/snippets/group_child.html', group = c.group_dict %}
 #}
 
 <div class="container single-column group-org-header" xmlns="http://www.w3.org/1999/html">
@@ -92,7 +92,7 @@
 
     {% if group.name == 'energy' %}
       <p>Download metadata file:
-        <a href="/armines.xml" download>
+        <a href="/cams_iso19139.xml" download>
           <button type="button" class="btn btn-default btn-sm">
           <span class="fa fa-cloud-download"></span>
           ISO19139
@@ -103,7 +103,7 @@
 
     {% if group.name == 'energy-1' %}
       <p>Download metadata file:
-        <a href="/energy-pilot-1.xml" download>
+        <a href="/gridded-data_iso19139.xml" download>
           <button type="button" class="btn btn-default btn-sm">
           <span class="fa fa-cloud-download"></span>
           ISO19139
